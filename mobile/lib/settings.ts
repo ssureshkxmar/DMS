@@ -4,6 +4,9 @@ export type Settings = {
   apiBaseUrl: string;
   wsBaseUrl: string;
 
+  esp32Ip: string;
+  esp32Port: string;
+
   enableSpeechAlerts: boolean;
   enableHapticAlerts: boolean;
   enableSessionLogging: boolean;
@@ -19,6 +22,9 @@ export const defaultSettings: Settings = {
   apiBaseUrl: process.env.EXPO_PUBLIC_API_BASE ?? DEFAULT_API_BASE,
   wsBaseUrl: process.env.EXPO_PUBLIC_WS_BASE ?? DEFAULT_WS_BASE,
 
+  esp32Ip: process.env.EXPO_PUBLIC_ESP32_IP ?? '192.168.1.100',
+  esp32Port: process.env.EXPO_PUBLIC_ESP32_PORT ?? '80',
+
   enableSpeechAlerts: true,
   enableHapticAlerts: true,
   enableSessionLogging: true,
@@ -33,6 +39,8 @@ const mergeSettings = (stored?: Partial<Settings>): Settings => {
     ...defaultSettings,
     ...(api ? { apiBaseUrl: api } : {}),
     ...(ws ? { wsBaseUrl: ws } : {}),
+    ...(stored?.esp32Ip?.trim() ? { esp32Ip: stored.esp32Ip.trim() } : {}),
+    ...(stored?.esp32Port?.trim() ? { esp32Port: stored.esp32Port.trim() } : {}),
     ...(typeof stored?.enableSpeechAlerts === 'boolean'
       ? { enableSpeechAlerts: stored.enableSpeechAlerts }
       : {}),

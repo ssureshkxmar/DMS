@@ -1,8 +1,8 @@
 {
-  "name": "manobela-mobile",
+  "name": "suraksha-mobile",
   "main": "expo-router/entry",
   "version": "1.0.0",
-  "description": "Mobile app for Manobela",
+  "description": "Suraksha - Driver Safety Monitoring App",
   "scripts": {
     "dev": "expo start",
     "android": "expo run:android",

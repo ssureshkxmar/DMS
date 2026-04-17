@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Manobela",
-    "slug": "manobela",
+    "name": "Suraksha",
+    "slug": "suraksha",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "manobela",
+    "scheme": "suraksha",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "splash": {
@@ -25,7 +25,7 @@
       "bitcode": false
     },
     "android": {
-      "package": "com.andrianllmm.manobela",
+      "package": "com.suraksha.app",
       "edgeToEdgeEnabled": true,
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",

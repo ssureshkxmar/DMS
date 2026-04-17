@@ -155,7 +155,7 @@ export default function MonitorScreen() {
 
   return (
     <ScrollView className="flex-1 px-2 py-1">
-      <Stack.Screen options={{ title: 'Monitor' }} />
+      <Stack.Screen options={{ title: 'Suraksha Monitor' }} />
 
       <ConnectionStatus sessionState={sessionState} clientId={clientId} error={error} />
 

@@ -4,6 +4,7 @@ import { ALERT_CONFIGS } from './alert-config';
 import { evaluateAlertConditions } from './alert-evaluator';
 import { speak, stopSpeaking } from '../speech';
 import { triggerHaptic } from '../hapticts';
+import { sendESP32Alert, priorityToESP32Type, notifyESP32SessionStart, notifyESP32SessionStop } from '../esp32';
 
 export const DEFAULT_STARTUP_DELAY_MS = 4_000;
 
@@ -126,6 +127,14 @@ export class AlertManager {
       }
     }
 
+    // Send alert to ESP32 (OLED display + buzzer)
+    const esp32Payload = priorityToESP32Type(config.priority);
+    sendESP32Alert({
+      message: config.message,
+      type: esp32Payload.type,
+      buzzer: esp32Payload.buzzer,
+    }).catch(() => {/* ESP32 errors are non-fatal */});
+
     if (this.enableSpeechAlerts) {
       speak(config.message, {
         onDone: () => this.clearAlertState(config, state),
@@ -180,6 +189,8 @@ export class AlertManager {
     this.currentAlert = null;
     this.sessionStartedAt = Date.now();
     this.playWelcomeMessage();
+    // Notify ESP32 that monitoring has started
+    notifyESP32SessionStart().catch(() => {/* non-fatal */});
   }
 
   /**
@@ -193,5 +204,7 @@ export class AlertManager {
     this.sessionStartedAt = null;
     this.hasPlayedWelcome = false;
     this.isSpeaking = false;
+    // Notify ESP32 that monitoring has stopped
+    notifyESP32SessionStop().catch(() => {/* non-fatal */});
   }
 }

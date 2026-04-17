@@ -29,6 +29,8 @@ import {
   Lightbulb,
   Database,
   Link,
+  Wifi,
+  Cpu,
 } from 'lucide-react-native';
 
 const websiteUrl = process.env.EXPO_PUBLIC_WEBSITE_BASE || 'https://manobela.site';
@@ -53,7 +55,7 @@ export default function SettingsScreen() {
   const { settings, saveSettings } = useSettings();
 
   const isDarkMode = colorScheme === 'dark';
-  const appName = Constants.expoConfig?.name ?? 'Manobela';
+  const appName = Constants.expoConfig?.name ?? 'Suraksha';
   const appVersion = Constants.expoConfig?.version ?? '1.0.0';
 
   const aboutValue = useMemo(() => `${appName} • v${appVersion}`, [appName, appVersion]);
@@ -226,6 +228,19 @@ export default function SettingsScreen() {
           icon={Globe}
           label="Configure URL"
           onPress={() => router.push('/settings/api-urls')}
+        />
+      </Section>
+
+      <Section title="ESP32 Device">
+        <SettingRow
+          icon={Cpu}
+          label="Device IP"
+          value={settings.esp32Ip}
+        />
+        <SettingRow
+          icon={Wifi}
+          label="Configure ESP32"
+          onPress={() => router.push('/settings/esp32')}
         />
       </Section>
 

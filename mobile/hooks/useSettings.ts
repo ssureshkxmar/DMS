@@ -15,6 +15,7 @@ import {
   type Settings,
 } from '../lib/settings';
 import { sessionLogger } from '@/services/logging/session-logger';
+import { setESP32Url } from '@/services/esp32';
 
 type SettingsContextValue = {
   settings: Settings;
@@ -48,6 +49,7 @@ const useSettingsState = (): SettingsContextValue => {
       if (!mountedRef.current || id !== requestIdRef.current) return;
       setSettings(storedSettings);
       sessionLogger.setUserLoggingEnabled(storedSettings.enableSessionLogging);
+      setESP32Url(storedSettings.esp32Ip, storedSettings.esp32Port);
     } finally {
       if (mountedRef.current && id === requestIdRef.current) {
         setIsLoading(false);
@@ -66,6 +68,8 @@ const useSettingsState = (): SettingsContextValue => {
 
     // Update sessionLogger preference when enableSessionLogging changes
     sessionLogger.setUserLoggingEnabled(nextSettings.enableSessionLogging);
+    // Update ESP32 URL when IP/port changes
+    setESP32Url(nextSettings.esp32Ip, nextSettings.esp32Port);
   }, []);
 
   useEffect(() => {

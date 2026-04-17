@@ -36,7 +36,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Monitor',
+          title: 'Suraksha Monitor',
           tabBarIcon: ({ color, size }) => <Aperture color={color} size={size} />,
         }}
       />
@@ -59,6 +59,7 @@ export default function TabLayout() {
 
       {/* Hidden compartments from tab navigation */}
       <Tabs.Screen name="settings/api-urls" options={{ href: null }} />
+      <Tabs.Screen name="settings/esp32" options={{ href: null }} />
       <Tabs.Screen name="insights/session/[sessionId]" options={{ href: null }} />
     </Tabs>
   );
