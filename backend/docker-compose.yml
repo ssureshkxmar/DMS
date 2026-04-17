@@ -1,6 +1,6 @@
 services:
   backend:
-    container_name: manobela-backend
+    container_name: suraksha-backend
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,3 +9,5 @@ services:
       - .env
     ports:
       - "8000:8000"
+    environment:
+      - PORT=8000

@@ -15,8 +15,8 @@ export type Settings = {
 
 const SETTINGS_KEY = 'app-settings';
 
-const DEFAULT_API_BASE = 'https://api.manobela.site';
-const DEFAULT_WS_BASE = 'wss://api.manobela.site/ws';
+const DEFAULT_API_BASE = 'http://13.232.35.54:8000';
+const DEFAULT_WS_BASE = 'ws://13.232.35.54:8000';
 
 export const defaultSettings: Settings = {
   apiBaseUrl: process.env.EXPO_PUBLIC_API_BASE ?? DEFAULT_API_BASE,
